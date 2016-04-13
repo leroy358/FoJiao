@@ -1,0 +1,77 @@
+﻿@model IEnumerable<FoJiao.Models.Audios>
+
+@{
+    ViewBag.Title = "音频列表";
+    Layout = "~/Areas/Admin/Views/Shared/_layout.cshtml";
+}
+
+<div class="pathTip">
+    <a class="pathTipItem" href="/admin/audio/list?category=@ViewBag.Category">音频列表</a>
+    <a class="pathTipItem" href="/Admin/audio/List?category=@ViewBag.Category&searchStr=@ViewBag.CollectionName">@ViewBag.CollectionName</a>
+    @{
+        if (ViewBag.searchStr != null)
+        {
+            <a class="pathTipItem" href='/Admin/audio/cellList?collectionId=@Request.QueryString["collectionId"]'>包含音频</a>
+            <a class="pathTipItem">@ViewBag.searchStr</a>
+
+        }
+        else
+        {
+            <a class="pathTipItem">包含音频</a>
+        }
+    }
+    
+</div>
+
+<div class="inputSet">
+    <a class="inputButton" href=@Url.Action("CellCreate", new { collectionId=Request.QueryString["collectionId"]}) leftIcon style="background-image:url(/BackSet/src/media/icon_plus.png)">添加</a>
+</div>
+
+<div class="contentlist">
+    <table>
+        <thead>
+            <tr>
+                <td width="80">ID</td>
+                <td width="120">创建时间</td>
+                <td width="120">更新时间</td>
+                <td>标题</td>
+                <td width="60">内容编辑</td>
+                <td width="60">音频预览</td>
+                <td width="60">删除</td>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                if (Model != null)
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td> @item.CreateTime</td>
+                            <td> @item.UpdateTime</td>
+                            <td> @item.Title</td>
+                            <td><a class="edit" href="/Admin/audio/CellEdit/@item.Id"></a></td>
+                            <td><a class="view" href="/admin/audio/audiopreview/@item.Id" target="_blank"></a></td>
+                            <td><a class="delete" href="@Url.Action("CellDelete", new { id=item.Id,returnURL=Request.Url.ToString()})"></a></td>
+                        </tr>
+                    }
+                }
+            }            
+        </tbody>
+    </table>
+</div>
+<form id="form_pageindex" action="/Admin/Audio/CellList" method="get">
+    <div class="inputSet">
+        <input type="hidden" name="collectionId" value='@Request.QueryString["collectionId"]' class="inputText">
+        <a href="@ViewBag.firstPage" class="inputButton">首页</a>
+        <a href="@ViewBag.perPage" class="inputButton"> &lt; 上一页</a>
+        <div class="splitter"></div>
+        <input type="text" class="inputText" name="pageIndex" style="width:40px;" value="@ViewBag.pageX" />
+        <span style="position:relative; float:left; line-height:16px; padding:8px; margin-right:8px;">/@ViewBag.pageCount</span>
+        <a onclick="document.getElementById('form_pageindex').submit()" class="inputButton">转至</a>
+        <div class="splitter"></div>
+        <a href="@ViewBag.nextPage" class="inputButton">下一页 &gt;</a>
+        <a href="@ViewBag.lastPage" class="inputButton">末页</a>
+    </div>
+</form>

@@ -1,0 +1,180 @@
+﻿@model FoJiao.Models.Articles
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_layout.cshtml";
+    ViewBag.Title = "文章编辑";
+}
+
+@section Head{
+    <link rel="stylesheet" type="text/css" href="/BackSet/src/other/simple-Uploader/simple-uploader.css">
+    <script src="~/BackSet/src/other/simple-Uploader/simple-uploader.js"></script>
+    <script src="/ckeditor/ckeditor.js" type="text/javascript"></script>
+    <script src="/ckfinder/ckfinder.js" type="text/javascript"></script>
+}
+
+<form action="/Admin/Article/SaveEdit" id="form1" method="post">
+    <div class="pathTip">
+        <a class="pathTipItem" href=@Url.Action("List", new { category = Model.Category })>文章列表</a>
+        @{
+            if (ViewBag.IsCreate)
+            {
+                <a class="pathTipItem" href="/Admin/Article/List?category=@Model.Category&searchStr=@Model.Title">@Model.Title</a>
+                <a class="pathTipItem">内容编辑</a>
+            }
+            else
+            {
+                <a class="pathTipItem">新增</a>
+            }
+        }
+    </div>
+    <div class="contentGroup">
+        <input type="hidden" name="Id" value="@(ViewBag.IsCreate?Model.Id.ToString():"")" />
+        <input type="hidden" name="IsCreate" value="@(ViewBag.IsCreate?"true":"false")" />
+        <input type="hidden" name="Category" value="@Model.Category" />
+        <input type="hidden" name="CreateTime" value="@(ViewBag.IsCreate?Model.CreateTime.ToString():"")" />
+        <input type="hidden" name="IsPublished" value="@(ViewBag.IsCreate?Model.IsPublished.ToString():"false")" />
+        <div class="contentGroupTitle">
+            基本信息
+        </div>
+        <!---->
+        <div class="contentUnit">
+            <div class="title">标题</div>
+            <div class="content">
+                <input type="text" id="title" name="Title" class="inputText" value="@Model.Title" />
+            </div>
+            <div class="tip"></div>
+        </div>
+        <!---->
+        <div class="contentUnit">
+            <div class="title">内容难度等级</div>
+            <div class="content">
+                <div class="inputListSelect">
+                    <div class="inputListSelectListWrapper">
+                        @{
+                            var db = new FoJiao.Models.FoJiaoDbContext();
+                            foreach (var grade in db.Grades)
+                            {
+                                <label class="inputListSelectItem">
+                                    <input class="inputListSelectItemInput" type="radio" name="Grade" value="@grade.Title" @(Model.Grade==grade.Title?"checked":"") />
+                                    <div class="inputListSelectItemContent">@grade.Title</div>
+                                </label>
+                            }
+
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="tip">可在“内容难度等级管理”菜单中添加或删除内容难度等级。</div>
+        </div>
+        <!---->
+        <div class="contentGroupTitle">
+            内容
+        </div>
+        <!---->
+        <div class="contentUnit" rowContent>
+            <div class="content">
+                <!--把以下textarea替换成ckeditor-->
+                @*<textarea class="inputText"></textarea>*@
+                <textarea id="texteditor" name="Cont">@Model.Cont</textarea>
+                <script type="text/javascript">
+                    CKEDITOR.replace('texteditor')
+                    //CKEDITOR.replace('texteditor', {
+                    //    "filebrowserImageUploadUrl": "/ckeditor/plugins/imgupload/imgupload.php"
+                    //});
+                    //CKEDITOR.config.extraAllowedContent = 'audio[*]{*}';  //to allow audio tag
+                </script>
+            </div>
+        </div>
+    </div>
+
+    <div class="contentGroup">
+        <div class="contentGroupTitle">
+            其他信息（选填）
+        </div>
+        <!---->
+        <div class="contentUnit">
+            <div class="title">关键词</div>
+            <div class="content">
+                <textarea type="text" name="Tags" class="inputText" >@Model.Tags</textarea>
+            </div>
+            <div class="tip">关键词之间以竖杠 "|" 进行分隔。</div>
+        </div>
+        <!---->
+        <div class="contentUnit">
+            <div class="title">标题图</div>
+            <div class="content">
+                <input type="text" id="PicIndex" name="PicIndex" class="inputText" value="@Model.PicIndex" />
+            </div>
+            <div class="tip">输入图片地址，也可以通过下面的“选择图片”按钮上传或选择图片。</div>
+        </div>
+        <!---->
+        <div class="contentUnit">
+            <div class="title"></div>
+            <div class="content">
+                <!--将此a标签绑定一个ckfinder调用事件，并将获取的值传入上一个input中-->
+                <a class="inputButton" onclick="BrowseServer('<%=tb_ThumbImg.ClientID %>');">选择图片</a>
+            </div>
+            <div class="tip">点击按钮进入上传选择图片界面。被选中的图片地址将自动填充到上面的输入框中。</div>
+        </div>
+    </div>
+
+    <div class="inputSet">
+        <a class="inputButton" onclick="doCheck();" leftIcon style="background-image:url(/BackSet/src/media/icon_disk.png)">提交</a>
+    </div>
+    <script>
+        function BrowseServer(inputId) {
+            var finder = new CKFinder();
+            finder.basePath = '/ckfinder/'; //导入CKFinder的路径
+            finder.selectActionFunction = SetFileField; //设置文件被选中时的函数
+            finder.selectActionData = inputId; //接收地址的input ID
+            finder.popup();
+        }
+        //文件选中时执行
+        function SetFileField(fileUrl, data) {
+            document.getElementById("PicIndex").value =fileUrl;
+        }
+    </script>
+    <script>
+    //点提交调用此函数
+    function doCheck() {
+        var titleNa = checkInput("title");
+        var titleS1 = checkText("texteditor");
+        var titleCh = checkButton("inputListSelectItemInput");
+
+        if (titleNa && titleS1 && titleCh) {
+            if (checkHttp("PicIndex")) {
+                alert("请选择服务器本地文件，而非网络资源！")
+                return;
+            }
+            document.getElementById("form1").submit();
+        }
+        else alert("请确认信息完整后提交！");
+    }
+    //判断输入框值是否空
+    function checkInput(idd) {
+        if (document.getElementById(idd).value != "") return true;
+        else return false;
+    }
+    //判断文本框值是否空
+    function checkText(idd) {
+        var value = CKEDITOR && CKEDITOR.instances[idd] ? CKEDITOR.instances[idd].getData() : document.getElementById(idd).value;
+        var result= value == '' ? false : true;
+        return result;
+    }
+    //判断选择按钮值是否空
+    function checkButton(idd) {
+        var buttons = document.getElementsByClassName('inputListSelectItemInput');
+        var result=false;
+        for (i = 0; i < buttons.length; i++) {
+            if (buttons[i].checked) return true;
+        }
+        return result;
+    }
+    //判断图片地址是否以http打头
+    function checkHttp(idd) {
+        var indexHttp = document.getElementById(idd).value.indexOf("http://");
+        if (indexHttp != -1) return true;
+        return false;
+    }
+    </script>
+</form>

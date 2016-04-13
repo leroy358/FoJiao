@@ -1,0 +1,113 @@
+.treeWrapper{
+	position:relative;
+	user-select:none;
+	-webkit-user-select:none;
+	-moz-user-select:none;
+	-o-user-select:none;
+}
+
+.treePackItem{
+	position:relative;
+	text-decoration:none;
+	font-size:12px;
+	line-height:16px;
+	padding:8px 16px;
+	padding-left:32px;
+	border:none 0px;
+	border-radius:4px;
+	background:#fff;
+	box-shadow:inset rgba(0,0,0,0.1) 0px -2px 0px 0px,rgba(0,0,0,0.25) 0px 0px 0px 1px, inset rgba(0,0,0,0.10) 0px -48px 32px -32px;
+	cursor:pointer;
+	display:block;
+	outline:none;
+	margin:0px;
+	margin-bottom:4px;
+	background-image:url(icon_folder.png);
+	background-repeat:no-repeat;
+	background-position:left center;
+}
+
+.treePack > .treePackItem::before{
+	position:absolute;
+	content:"";
+	left:-8px;
+	top:16px;
+	width:6px;
+	border-top:1px dotted rgba(0,0,0,0.20);
+}
+
+.treePackItem:hover{
+	box-shadow:rgba(0,195,0,1) 0px 0px 2px 1px, inset rgba(255,255,255,0.6) 0px 0px 0px 1px, inset rgba(0,0,0,0.10) 0px -48px 32px -32px;
+}
+
+.treePackItem:active , .treePackItem:focus{
+	box-shadow:rgba(0,95,175,1) 0px 0px 2px 1px, inset rgba(255,255,255,0.6) 0px 0px 0px 1px, inset rgba(0,0,0,0.10) 0px -48px 32px -32px;
+}
+
+.treePackItem[open]{
+	background-image:url(icon_folderOpen.png);
+}
+
+.treePack{
+	position:relative;
+	display:block;
+	transition:padding-left 0.4s , opacity 0.4s;
+	padding-left:0px;
+	overflow:hidden;
+	opacity:0;
+	height:0px;
+}
+
+.treePack::before{
+	position:absolute;
+	content:"";
+	left:4px;
+	top:0px;
+	bottom:0px;
+	border-left:1px dotted rgba(0,0,0,0.20);
+}
+
+.treePackItem[open] + .treePack{
+	height:auto;
+	overflow:visible;
+	opacity:1;
+	padding-left:16px;
+}
+
+.treeItem{
+	position:relative;
+	text-decoration:none;
+	font-size:12px;
+	line-height:16px;
+	padding:8px 16px;
+	padding-left:32px;
+	border:none 0px;
+	border-radius:4px;
+	background:#fff;
+	box-shadow:rgba(0,0,0,0.25) 0px 0px 0px 1px;
+	cursor:pointer;
+	display:block;
+	outline:none;
+	margin:0px;
+	margin-bottom:4px;
+	background-image:url(icon_file.png);
+	background-repeat:no-repeat;
+	background-position:left center;
+}
+
+.treePack > .treeItem::before{
+	position:absolute;
+	content:"";
+	left:-8px;
+	top:16px;
+	width:6px;
+	border-top:1px dotted rgba(0,0,0,0.20);
+}
+
+.treeItem:hover{
+	box-shadow:rgba(0,195,0,1) 0px 0px 2px 1px;
+}
+
+.treeItem:active , .treeItem:focus{
+	box-shadow:rgba(0,95,175,1) 0px 0px 2px 1px;
+}

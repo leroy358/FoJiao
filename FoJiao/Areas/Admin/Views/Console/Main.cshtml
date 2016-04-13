@@ -1,0 +1,60 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Shared/_layout.cshtml";
+    ViewBag.Title = "管理系统";
+}
+
+@section Head{
+    <link rel="stylesheet" type="text/css" href="~/BackSet/src/other/uiTree/uiTree.css">
+    <link rel="stylesheet" type="text/css" href="~/BackSet/src/css/frame_main.css">
+    <script src="~/BackSet/src/other/uiTree/uiTree.js"></script>
+    <script src="~/BackSet/src/js/main.js"></script>
+}
+
+<div id="leftMenuArea">
+    <div id="menuTitleArea">
+        <span id="menuTitle">用户：admin</span>
+        <a id="logout" href="/admin/console/exit">[退出]</a>
+    </div>
+    <div id="menuTreeArea">
+        <div id="menuTreeAreaInnerWrapper">
+            <div class="treeWrapper">
+                <a class="treePackItem">阅读</a>
+                <span class="treePack">
+                    <a class="treeItem" link="/admin/article/list?category=1">文章</a>
+                    <a class="treeItem" link="/admin/video/list">视频</a>
+                    <a class="treeItem" link="/admin/audio/list?category=1">音频</a>
+                    <a class="treeItem" link="/admin/audio/list?category=2">音乐</a>
+                </span>
+                <a class="treePackItem">答疑</a>
+                <span class="treePack">
+                    <a class="treePackItem">答疑</a>
+                    <span class="treePack">
+                        <a class="treeItem" link="/admin/confusion/list?state=0&delete=0">尚未处理的问题</a>
+                        <a class="treeItem" link="/admin/confusion/list?state=1&delete=0">已回答的问题</a>
+                        <a class="treeItem" link="/admin/confusion/list?state=2&delete=1">标为删除的问题</a>
+                    </span>
+                    <a class="treeItem" link="/admin/confusioncate/list">答疑整理</a>
+                </span>
+                <a class="treePackItem">活动公告</a>
+                <span class="treePack">
+                    <a class="treeItem" link="/admin/article/list?category=2">法师法训</a>
+                    <a class="treeItem" link="/admin/article/list?category=3">平台活动</a>
+                </span>
+                <a class="treePackItem">其他</a>
+                <span class="treePack">
+                    <a class="treeItem" link="/admin/daily/list">每日一句</a>
+                    <a class="treeItem" link="/admin/grade/list">内容难度等级管理</a>
+                </span>
+                <a class="treeItem" link="/admin/config/edit">后台密码修改</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="openedMenuItemsArea">
+    <div id="openedMenuItemsAreaInnerWrapper"></div>
+</div>
+
+<div id="contentArea">
+    <div id="contentAreaInnerWrapper"></div>
+</div>

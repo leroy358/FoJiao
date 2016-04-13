@@ -1,0 +1,83 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>無標題文件</title>
+<script src="simple-validator.js"></script>
+</head>
+
+<body>
+
+<h1>本库用到了document.querySelectorAll方法，老浏览器不支持。</h1>
+
+	<!--在表单元素的s-validator-rules属性中指定验证规则，当前支持的验证规则有：
+		none		未填写任何值（包括未输入任何空格）
+    	required	值不能为空，如果在冒号后面写参数，可声明要求的字符串值长度范围
+        	required:>=10,<20	参数以“,”分隔，各个参数之间是且关系，没有顺序要求，示例意为：字符串长度大于等于10且小于20
+            
+        email		值需要满足email格式
+        
+        date		值需要满足yyyy-mm-dd的日期格式，不足的位数必须以0补齐，如果在冒号后面写参数，可声明要求的时间范围
+        	date:>=1921-1-1,<1988-12-12		参数以“,”分隔，各个参数之间是且关系，没有顺序要求，示例意为：填写时间范围必须大于等于1921-1-1，小于1988-12-12。为了书写方便，参数中的时间不管是否补齐位数都可以。
+            
+		url			值必须是包含http|https|ftp等常见前缀的完整url，例如 http://baidu.com
+        
+		number		值必须全部是数字，如果在冒号后面写参数，可声明要求的字符串长度范围
+        	number:>=10,<20		参数以“,”分隔，各个参数之间是且关系，没有顺序要求，示例意为：字符串长度大于等于10且小于20
+            
+		integer		值必须是有效的整数，允许以0开头，如果在冒号后面写参数，可声明数值范围
+        	integer:>=10,<20	参数以“,”分隔，各个参数之间是且关系，没有顺序要求，示例意为：整数，大于等于10且小于20
+            
+		real		值必须是有效的实数，允许以0开头，如果在冒号后面写参数，可声明数值范围
+        	real:<20,>=10		参数以“,”分隔，各个参数之间是且关系，没有顺序要求，示例意为：实数，小于20且大于等于10
+            
+		char		值必须全部是英文字母，不要求大小写，如果在冒号后面写参数，可声明长度要求
+        	char:>=10,<20		参数以“,”分隔，各个参数之间是且关系，没有顺序要求，实例意为：字符串长度大于等于10且小于20
+            
+		charNumber	值必须全部是字母或者数字，如果在冒号后面写参数，可声明要求的字符串值长度范围
+            charNumber:>=10,<20	参数以“,”分隔，各个参数之间是且关系，没有顺序要求，实例意为：字符串长度大于等于10且小于20
+            
+		charNumber_	值必须全部是字母或者数字或者下划线，如果在冒号后面写参数，可声明要求的字符串值长度范围
+        	charNumber_:>=10,<20	参数以“,”分隔，各个参数之间是且关系，没有顺序要求，实例意为：字符串长度大于等于10且小于20
+            
+		chinese		值必须全部是汉字，如果在冒号后面写参数，可声明要求的字符串值长度范围
+        	chinese:>=10,<20		参数以“,”分隔，各个参数之间是且关系，没有顺序要求，实例意为：字符串长度大于等于10且小于20
+            
+        如果一个表单需要满足A或B条件，可写作“A|B”，例如s-validator-rules="required:>10|number:>5"，表示该处必须填写字符串长度大于10的任意内容或者字符串长度大于5的纯数字
+    -->
+	<!--在表单元素的s-validator-onFail属性中指定此元素验证未通过时执行的js代码，在代码中使用this表示当前元素-->
+	<!--在表单元素的s-validator-onSucceed属性中指定此元素验证通过时执行的js代码，在代码中使用this表示当前元素-->
+    <!--执行函数simple.validator.validate来验证。有一个布尔类型返回值，表示整体验证是否通过-->
+    
+	空值或纯数字<input s-validator-rules="none|number" s-validator-onFail="setRed(this);" s-validator-onSucceed="setBlack(this);"><br/>
+	必填<input s-validator-rules="required:>10" s-validator-onFail="setRed(this);" s-validator-onSucceed="setBlack(this);">字符长度大于10<br/>
+	邮件<input s-validator-rules="email" s-validator-onFail="setRed(this);" s-validator-onSucceed="setBlack(this);"><br/>
+	日期<input s-validator-rules="date:>1992-1-1,<2020-1-1" s-validator-onFail="setRed(this);" s-validator-onSucceed="setBlack(this);">严格yyyy-mm-dd格式，在1992-1-1之后，2020-1-1之前<br/>
+    url<textarea s-validator-rules="url" s-validator-onFail="setRed(this);" s-validator-onSucceed="setBlack(this);"></textarea><br/>
+	纯数字<input s-validator-rules="number:>4" s-validator-onFail="setRed(this);" s-validator-onSucceed="setBlack(this);">字符串长度大于4<br/>
+	整数<input s-validator-rules="integer:>100,<200" s-validator-onFail="setRed(this);" s-validator-onSucceed="setBlack(this);">大于100小于200<br/>
+	实数<input s-validator-rules="real" s-validator-onFail="setRed(this);" s-validator-onSucceed="setBlack(this);"><br/>
+	字母<input s-validator-rules="char:>3" s-validator-onFail="setRed(this);" s-validator-onSucceed="setBlack(this);">字符串长度大于3<br/>
+	字母数字<input s-validator-rules="charNumber" s-validator-onFail="setRed(this);" s-validator-onSucceed="setBlack(this);"><br/>
+	字母数字_<input s-validator-rules="charNumber_" s-validator-onFail="setRed(this);" s-validator-onSucceed="setBlack(this);"><br/>
+	中文<input s-validator-rules="chinese" s-validator-onFail="setRed(this);" s-validator-onSucceed="setBlack(this);"><br/>
+	纯中文长度大于5，或纯英文字母长度大于10，或任意字符长度大于20<input s-validator-rules="chinese:>5|char:>10|required:>20" s-validator-onFail="setRed(this);" s-validator-onSucceed="setBlack(this);"><br/>
+    
+    <input type="button" id="asd" value="sssss" id="6" />
+
+	<script type="text/javascript">	
+		document.getElementById("asd").addEventListener("click",function(){
+    		document.getElementById("asd").value = simple.validator.validate();
+		});
+
+		function setRed(thisE){
+			thisE.style.border='1px solid red';
+		}
+
+		function setBlack(thisE){
+			thisE.setAttribute('style','');
+		}
+    </script>
+
+</body>
+</html>

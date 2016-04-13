@@ -1,0 +1,28 @@
+#optionArea{
+	position: relative;
+}
+.imgContainer{
+    position:relative;
+	height: 200px;
+}
+.image{
+    float:left;
+    display:block;
+	height: 200px;
+}
+.deleteImg{
+    float:left;
+	width: 20px;
+	height: 20px;
+	opacity: 0;
+	filter:alpha(opacity=0);
+	background-image: url(../media/icon_close_small_hover.png);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	transition: 0.2s all ease-out;
+}
+.imgContainer:hover .deleteImg{
+	opacity: 1;
+	filter:alpha(opacity=100);
+}

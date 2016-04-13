@@ -1,0 +1,86 @@
+﻿@model FoJiao.Models.ConfusionGuest
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_layout.cshtml";
+    ViewBag.Title = "问题编辑";
+}
+
+@section Head{
+    <link rel="stylesheet" type="text/css" href="/BackSet/src/other/simple-Uploader/simple-uploader.css">
+    <script src="~/BackSet/src/other/simple-Uploader/simple-uploader.js"></script>
+    <script src="/ckeditor/ckeditor.js" type="text/javascript"></script>
+    <script src="/ckfinder/ckfinder.js" type="text/javascript"></script>
+}
+<form action="/Admin/Confusion/SaveEdit" id="form1" method="post">
+    <div class="pathTip">
+        @{
+            if (Request.QueryString["state"] == "0")
+            {
+                <a class="pathTipItem" href="/admin/confusion/list?state=0">尚未处理的问题列表</a>
+            }
+            else if (Request.QueryString["state"] == "1")
+            {
+                <a class="pathTipItem" href="/admin/confusion/list?state=1">已回答问题列表</a>
+            }
+            else
+            {
+                <a class="pathTipItem" href="/admin/confusion/list?state=2">标为删除的问题列表</a>
+            }
+        }
+        <a class="pathTipItem">回答</a>
+    </div>
+
+    <div class="contentGroup">
+        <input type="hidden" name="Id" value="@Model.Id" />
+        <input type="hidden" name="StateId" value="@Model.StateId" />
+        <input type="hidden" name="IsDeleted" value='@(Model.IsDeleted?"true":"false")' />
+        <input type="hidden" name="CreateTime" value="@Model.CreateTime" />
+        <input type="hidden" name="UserId" value="@Model.UserId" />
+        <input type="hidden" name="SourceCate" value="@Model.SourceCate" />
+        <div class="contentGroupTitle">
+            问题
+        </div>
+        <!---->
+        <div class="contentUnit" rowContent>
+            <div class="content">
+                <textarea type="text" name="Title" class="inputText" readOnly>@Model.Title</textarea>
+            </div>
+            <div class="tip"></div>
+        </div>
+        <!---->
+        <div class="contentGroupTitle">
+            回答
+        </div>
+        <!---->
+        <div class="contentUnit" rowContent>
+            <div class="content">
+                <textarea id="texteditor" name="Answers">@Model.Answers</textarea>
+                <script type="text/javascript">
+                    CKEDITOR.replace('texteditor')
+                </script>
+            </div>
+            <div class="tip"></div>
+        </div>
+    </div>
+
+    <div class="inputSet">
+        <a class="inputButton" onclick="doCheck();" leftIcon style="background-image:url(/BackSet/src/media/icon_disk.png)">提交</a>
+    </div>
+    <script>
+    //点提交调用此函数
+    function doCheck() {
+        var titleS1 = checkText("texteditor");
+
+        if (titleS1) {
+            document.getElementById("form1").submit();
+        }
+        else alert("请确认信息完整后提交！");
+    }
+    //判断文本框值是否空
+    function checkText(idd) {
+        var value = CKEDITOR && CKEDITOR.instances[idd] ? CKEDITOR.instances[idd].getData() : document.getElementById(idd).value;
+        var result= value == '' ? false : true;
+        return result;
+    }
+    </script>
+</form>

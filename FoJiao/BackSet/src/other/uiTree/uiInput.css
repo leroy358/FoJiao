@@ -1,0 +1,343 @@
+/*----------输入框----------*/
+
+.inputText{
+	font-size:12px;
+	line-height:16px;
+	height:32px;
+	padding:8px 8px;
+	border:none 0px;
+	border-radius:4px;
+	background:#fff;
+	margin:0px;
+	display:inline-block;
+	box-shadow:inset rgba(0,0,0,0.1) 0px 2px 0px 0px, rgba(0,0,0,0.25) 0px 0px 0px 1px, inset rgba(0,0,0,0.10) 0px 24px 16px -16px;
+	outline:none;
+	-o-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+}
+
+.inputText:hover{
+	box-shadow:rgba(0,195,0,1) 0px 0px 2px 1px, inset rgba(255,255,255,0.6) 0px 0px 0px 1px, inset rgba(0,0,0,0.10) 0px 24px 16px -16px;
+}
+
+.inputText:focus{
+	box-shadow:rgba(0,95,175,1) 0px 0px 2px 1px, inset rgba(255,255,255,0.6) 0px 0px 0px 1px, inset rgba(0,0,0,0.10) 0px 24px 16px -16px;
+}
+
+.inputText[error]{
+	box-shadow:rgba(255,0,0,1) 0px 0px 2px 1px, inset rgba(255,255,255,0.6) 0px 0px 0px 1px, inset rgba(0,0,0,0.10) 0px 24px 16px -16px;
+}
+
+.inputText[readonly],.inputText[disabled]{
+	background-color:#eee;
+	text-shadow:rgba(255,255,255,1.00) 1px 1px 0px;
+}
+
+	/*--状态--*/
+
+.inputText[leftIcon]{
+	padding-left:32px;
+	background-position:left center;
+	background-repeat:no-repeat;
+}
+
+.inputText[rightIcon]{
+	padding-right:32px;
+	background-position:right center;
+	background-repeat:no-repeat;
+}
+
+/*----------普通按钮----------*/
+
+.inputButton{
+	text-decoration:none;
+	font-size:12px;
+	line-height:16px;
+	padding:8px 16px;
+	border:none 0px;
+	border-radius:4px;
+	background:#fff;
+	box-shadow:inset rgba(0,0,0,0.1) 0px -2px 0px 0px,rgba(0,0,0,0.25) 0px 0px 0px 1px, inset rgba(0,0,0,0.10) 0px -48px 32px -32px;
+	cursor:pointer;
+	display:inline-block;
+	text-align:center;
+	outline:none;
+	-o-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	margin:0px;
+}
+
+.inputButton:hover{
+	box-shadow:rgba(0,195,0,1) 0px 0px 2px 1px, inset rgba(255,255,255,0.6) 0px 0px 0px 1px, inset rgba(0,0,0,0.10) 0px -48px 32px -32px;
+}
+
+.inputButton:active , .inputButton:focus{
+	box-shadow:rgba(0,95,175,1) 0px 0px 2px 1px, inset rgba(255,255,255,0.6) 0px 0px 0px 1px, inset rgba(0,0,0,0.10) 0px -48px 32px -32px;
+}
+
+.inputButton[error]{
+	box-shadow:rgba(255,0,0,1) 0px 0px 2px 1px, inset rgba(255,255,255,0.6) 0px 0px 0px 1px, inset rgba(0,0,0,0.10) 0px -48px 32px -32px;
+}
+
+.inputButton[disabled]{
+	background-color:#eee;
+	text-shadow:rgba(255,255,255,1.00) 1px 1px 0px; 
+}
+
+	/*--状态--*/
+
+.inputButton[leftIcon]{
+	padding-left:32px;
+	background-position:left center;
+	background-repeat:no-repeat;
+}
+
+.inputButton[topIcon]{
+	padding-top:32px;
+	text-align:center;
+	background-position:top center;
+	background-repeat:no-repeat;
+}
+
+.inputButton[rightIcon]{
+	padding-right:32px;
+	background-position:right center;
+	background-repeat:no-repeat;
+}
+
+.inputButton[bottomIcon]{
+	padding-bottom:32px;
+	text-align:center;
+	background-position:bottom center;
+	background-repeat:no-repeat;
+}
+
+.inputButton[centerIcon]{
+	background-position:center center;
+	background-repeat:no-repeat;
+}
+
+/*下拉选单*/
+.inputListSelect{
+	position:relative;
+	width:144px;
+	height:32px;
+	text-decoration:none;
+	padding:8px 32px 8px 16px;
+	border:none 0px;
+	border-radius:4px;
+	background:#fff;
+	box-shadow:rgba(0,0,0,0.25) 0px 0px 0px 1px, inset rgba(255,255,255,0.6) 0px 0px 0px 1px, inset rgba(0,0,0,0.10) 0px -48px 32px -32px;
+	display:inline-block;
+	-o-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	margin:0px;
+	transition:all 0.4s;
+	user-select:none;
+	-webkit-user-select:none;
+	-moz-user-select:none;
+	-o-user-select:none;
+}
+
+.inputListSelectListWrapper{
+	position:absolute;
+	left:16px;
+	top:8px;
+	right:32px;
+	bottom:8px;
+	background-color:rgba(0,0,0,0.00);
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+	text-align:center;
+	line-height:16px;
+	font-size:12px;
+	box-shadow:rgba(0,0,0,0) 0px 0px 4px 1px;
+	transition:background-color 0.0s;
+	box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	-o-box-sizing:border-box;
+}
+
+.inputListSelect:hover .inputListSelectListWrapper{
+	width:100%;
+	left:0px;
+	top:34px;
+	background-color:rgba(0,0,0,0.60);
+	height:auto;
+	overflow:visible;
+	bottom:auto;
+	border-radius:4px;
+	padding:8px 8px 7px 8px;
+	box-shadow:rgba(0,0,0,0.25) 0px 0px 4px 1px;
+	z-index:2;
+	transition:background-color 0.4s;
+}
+
+.inputListSelect[listAtRight]:hover .inputListSelectListWrapper{
+	left:100%;
+	top:0px;
+	margin-left:2px;
+}
+
+.inputListSelect[listAtTop]:hover .inputListSelectListWrapper{
+	bottom:34px;
+	top:auto;
+}
+
+.inputListSelect[listAtRightTop]:hover .inputListSelectListWrapper{
+	left:100%;
+	bottom:0px;
+	top:auto;
+	margin-left:2px;
+}
+
+.inputListSelect::before,.inputListSelect::after{
+	content:"";
+	position:absolute;
+	top:50%;
+	height:2px;
+	width:2px;
+	background-color:rgba(0,0,0,0.40);
+	z-index:1;
+	transition:all 0.0s;
+}
+
+.inputListSelect::before{
+	right:19px;
+	box-shadow:rgba(0,0,0,0.40) 4px 0px 0px 0px;
+	margin-top:-2px;
+}
+
+.inputListSelect::after{
+	right:11px;
+	box-shadow:rgba(0,0,0,0.40) -4px 4px 0px 0px;
+	margin-top:-2px;
+}
+
+.inputListSelect:hover::before,.inputListSelect:hover::after{
+	top:50%;
+	right:50%;
+	height:4px;
+	width:4px;
+	margin-top:-2px;
+	background-color:rgba(255,255,255,1);
+	box-shadow:rgba(255,255,255,1) 8px 0px 0px 0px;
+	border-radius:2px;
+	transition:all 0.4s;
+}
+
+.inputListSelect:hover::before{
+	margin-right:10px;
+}
+
+.inputListSelect:hover::after{
+	margin-right:-6px;
+}
+
+.inputListSelectItemInput{
+	display:none;
+}
+
+.inputListSelectItemContent{
+	display:none;
+}
+
+.inputListSelectItemInput:checked + .inputListSelectItemContent{
+	display:inline;
+	line-height:16px;
+	font-size:12px;
+}
+
+.inputListSelectItemInput[type=checkbox] + .inputListSelectItemContent:after{
+	content:";";
+}
+
+.inputListSelect:hover{
+	background-color:rgba(0,0,0,0.60);
+	box-shadow:rgba(0,0,0,0.25) 0px 0px 4px 1px, inset rgba(255,255,255,0.0) 0px 0px 0px 1px, inset rgba(0,0,0,0.10) 0px -48px 32px -32px;
+}
+
+.inputListSelect:hover .inputListSelectListWrapper:before{
+	content:"";
+	position:absolute;
+	top:-2px;
+	height:2px;
+	left:0px;
+	right:0px;
+}
+
+.inputListSelect[listAtRight]:hover .inputListSelectListWrapper:before{
+	top:0px;
+	bottom:0px;
+	width:2px;
+	height:auto;
+	left:-2px;
+}
+
+.inputListSelect[listAtTop]:hover .inputListSelectListWrapper:before{
+	bottom:-2px;
+	top:auto;
+}
+
+.inputListSelect[listAtRightTop]:hover .inputListSelectListWrapper:before{
+	top:0px;
+	bottom:0px;
+	width:2px;
+	height:auto;
+	left:-2px;
+}
+
+.inputListSelect:hover .inputListSelectItemContent{
+	display:block;
+	text-decoration:none;
+	font-size:12px;
+	line-height:16px;
+	padding:8px 16px;
+	border:none 0px;
+	background:rgba(0,0,0,0.60);
+	color:#fff;
+	box-shadow:rgba(0,0,0,0.0) 0px 0px 0px 1px, inset rgba(255,255,255,0.0) 0px 0px 0px 1px,inset rgba(0,0,0,0.0) 0px -48px 32px -32px;
+	cursor:pointer;
+	margin:0px;
+	margin-bottom:1px;
+	text-align:center;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+	transition:background-color 0.4s,box-shadow 0.4s;
+}
+
+.inputListSelect:hover .inputListSelectItem:first-child .inputListSelectItemContent{
+	border-top-left-radius:4px;
+	border-top-right-radius:4px;
+}
+
+.inputListSelect:hover .inputListSelectItem:last-child .inputListSelectItemContent{
+	border-bottom-left-radius:4px;
+	border-bottom-right-radius:4px;
+}
+
+
+.inputListSelect:hover .inputListSelectItemInput:checked + .inputListSelectItemContent{
+	background:rgba(255,255,255,1);
+	color:inherit;
+	box-shadow:rgba(0,0,0,0.25) 0px 0px 0px 1px, inset rgba(255,255,255,0.6) 0px 0px 0px 1px,inset rgba(0,0,0,0.10) 0px -48px 32px -32px;
+}
+
+.inputListSelect:hover .inputListSelectItemInput:checked .inputListSelectItemContent{
+	display:inline;
+	line-height:16px;
+	font-size:12px;
+}
+
+.inputListSelect:hover .inputListSelectItemContent:after{
+	display:none;
+}

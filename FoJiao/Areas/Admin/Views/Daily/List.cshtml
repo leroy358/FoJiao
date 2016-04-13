@@ -1,0 +1,72 @@
+﻿@model IEnumerable<FoJiao.Models.DailyWords>
+
+@{
+    ViewBag.Title = "每日一句列表";
+    Layout = "~/Areas/Admin/Views/Shared/_layout.cshtml";
+}
+
+<div class="pathTip">
+    @{
+        if (ViewBag.searchStr != null)
+        {
+            <a class="pathTipItem" href=@Url.Action("List")>每日一句列表</a>
+            <a class="pathTipItem">@ViewBag.searchStr</a>
+        }
+        else
+        {
+            <a class="pathTipItem">每日一句列表</a>
+        }
+    }
+</div>
+
+<div class="inputSet">
+    <a class="inputButton" href=@Url.Action("Create")  leftIcon style="background-image:url(/BackSet/src/media/icon_plus.png)">添加</a>
+</div>
+
+<div class="contentlist">
+    <table>
+        <thead>
+            <tr>
+                <td width="80">ID</td>
+                <td width="120">创建时间</td>
+                <td width="120">更新时间</td>
+                <td>标题</td>
+                <td width="60">内容编辑</td>
+                <td width="60">删除</td>
+            </tr>
+        </thead>
+        <tbody>
+           @{
+               if (Model != null)
+               {
+                   foreach (var item in Model)
+                   {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td> @item.CreateTime</td>
+                        <td> @item.UpdateTime</td>
+                        <td> @item.Title</td>
+                        <td><a class="edit" href="/Admin/daily/Edit/@item.Id"></a></td>
+                        <td><a class="delete" href="@Url.Action("Delete", new { id=item.Id,returnURL=Request.Url.ToString()})"></a></td>
+                    </tr>
+                   }
+               }
+        }
+        
+        </tbody>
+    </table>
+</div>
+<form id="form_pageindex" action="/Admin/Daily/List" method="get">
+    <div class="inputSet">
+        <input type="hidden" name="searchStr" value="@ViewBag.searchStr" class="inputText">
+        <a href="@ViewBag.firstPage" class="inputButton">首页</a>
+        <a href="@ViewBag.perPage" class="inputButton"> &lt; 上一页</a>
+        <div class="splitter"></div>
+        <input type="text" class="inputText" name="pageIndex" style="width:40px;" value="@ViewBag.pageX" />
+        <span style="position:relative; float:left; line-height:16px; padding:8px; margin-right:8px;">/@ViewBag.pageCount</span>
+        <a onclick="document.getElementById('form_pageindex').submit()" class="inputButton">转至</a>
+        <div class="splitter"></div>
+        <a href="@ViewBag.nextPage" class="inputButton">下一页 &gt;</a>
+        <a href="@ViewBag.lastPage" class="inputButton">末页</a>
+    </div>
+</form>

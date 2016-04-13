@@ -1,0 +1,532 @@
+*{
+	color:inherit;
+	font-size:inherit;
+	font-family:inherit;
+	line-height:inherit;
+	text-decoration:none;
+	outline:none;
+}
+
+body{
+	position:relative;
+	margin:0px;
+	font-size:12px;
+	font-family:微软雅黑;
+	color:#4d4d4d;
+}
+
+.pathTip{
+	position:relative;
+	margin:8px;
+	line-height:16px;
+	background-color:#eee;
+	border-radius:8px;
+	padding:8px 8px 8px 32px;
+	overflow:auto;
+	background-position:left top;
+	background-repeat:no-repeat;
+	background-image:url(../media/icon_location.png);
+}
+
+.pathTipItem{
+	position:relative;
+	float:left;
+	margin: 0px 8px 0px 0px;
+}
+
+	.pathTipItem:link:hover{
+		font-weight:bold;
+	}
+
+.pathTipItem::after{
+	content:">";
+	position:relative;
+	margin: 0px 0px 0px 8px;
+	font-weight:normal;
+}
+
+.pathTipItem:last-child::after{
+	content:normal;
+}
+
+.contentGroup{
+	position:relative;
+	margin:8px;
+	background-color:#eee;
+	border-radius:8px;
+	padding:4px 4px 3px 4px;
+}
+
+.contentGroupTitle{
+	position:relative;
+	padding: 16px 16px 16px 16px;
+	background-color:#fff;
+	text-shadow:rgba(0,0,0,0.30) 1px 1px 2px;
+	line-height:16px;
+	margin-bottom:1px;
+	box-shadow: inset rgba(0,0,0,0.1) 0px -32px 32px -32px ;
+}
+
+.contentGroupTitle::before{
+	content:"";
+	position:absolute;
+	left:0px;
+	bottom:0px;
+	right:0px;
+	height:2px;
+	background-color:#0079c7;
+}
+
+.contentUnit{
+	position:relative;
+	padding: 8px 8px 8px 160px;
+	background-color:#fff;
+	margin-bottom:1px;
+}
+
+.contentUnit > .title{
+	position:absolute;
+	height:16px;
+	line-height:16px;
+	top:16px;
+	left:16px;
+	width:128px;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	text-align:right;
+	white-space:nowrap;
+}
+
+.contentUnit > .content{
+	position:relative;
+	width:256px;
+}
+
+.contentUnit > .content > .inputButton , .contentUnit > .content > .inputText{
+	position:relative;
+	display:block;
+	width:100%;
+	min-width:100%;
+	max-width:100%;
+}
+
+.contentUnit > .content > .uploadHolder{
+	position:relative;
+	display:block;
+	height:32px;
+}
+
+.contentUnit > .content > textarea.inputText{
+	min-height:64px;
+}
+
+.contentUnit > .content > .inputListSelect{
+	position:relative;
+	display:block;
+	width:100%;
+}
+
+.contentUnit > .tip{
+	position:absolute;
+	left:424px;
+	top:8px;
+	bottom:8px;
+	right:16px;
+	line-height:16px;
+	border-radius:4px;
+	background-color:#eee;
+	padding:8px 8px 8px 32px;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	background-position:left top;
+	background-repeat:no-repeat;
+	background-image:url(../media/icon_info_gray.png);
+}
+
+.contentUnit > .tip[highLight]{
+	box-shadow: inset rgba(255,0,0,1.00) 0px 0px 0px 1px;
+	background-image:url(../media/icon_info_red.png);
+}
+
+.contentUnit > .tip:empty{
+	display:none;
+}
+
+.contentUnit[rowContent]{
+	position:relative;
+	padding:16px;
+	background-color:#fff;
+	margin-bottom:1px;
+}
+
+.contentUnit[rowContent] > .title{
+	position:relative;
+	height:16px;
+	line-height:16px;
+	top:0px;
+	left:0px;
+	padding:0px 0px 32px 0px;
+	width:auto;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:normal;
+	text-align:left;
+}
+
+.contentUnit[rowContent] > .title::after{
+	content:"";
+	position:absolute;
+	left:0px;
+	right:0px;
+	bottom:16px;
+	height:0px;
+	border-bottom:1px dotted rgba(0,0,0,0.10);
+}
+
+.contentUnit[rowContent] > .content{
+	position:relative;
+	width:auto;
+}
+
+.contentUnit[rowContent] > .tip{
+	position:relative;
+	margin-top:8px;
+	left:0px;
+	top:0px;
+	bottom:0px;
+	right:0px;
+	border-radius:4px;
+	background-color:#eee;
+	padding:8px 8px 8px 32px;
+	overflow:visible;
+	text-overflow:clip;
+	background-position:left top;
+	background-repeat:no-repeat;
+	background-image:url(../media/icon_info_gray.png);
+}
+
+.contentUnit[rowContent] > .tip:empty{
+	display:none;
+}
+
+.contentGroupTitle:first-child , .contentUnit:first-child{
+	border-top-left-radius:4px;
+	border-top-right-radius:4px;
+}
+
+.contentGroupTitle:last-child , .contentUnit:last-child{
+	border-bottom-left-radius:4px;
+	border-bottom-right-radius:4px;
+}
+
+.inputSet{
+	position:relative;
+	margin:8px;
+	background-color:#fff;
+	border-radius:8px;
+	padding:20px 20px 4px 20px;
+	box-shadow: inset #eee 0px 0px 0px 4px;
+}
+
+.inputSet::after{
+	content:"";
+	position:relative;
+	clear:both;
+	display:block;
+}
+
+.inputSet > .inputText , .inputSet > .inputButton , .inputSet > .inputListSelect{
+	position:relative;
+	float:left;
+	display:block;
+	margin:0px 8px 16px 0px
+}
+
+.inputSet > .splitter{
+	position:relative;
+	float:left;
+	display:block;
+	height:16px;
+	margin:8px 24px 24px 16px;
+	border-left:1px dotted rgba(0,0,0,0.2);
+}
+
+.inputSet > .infoWrapper{
+	position:relative;
+	float:left;
+	height:32px;
+	margin:0px 8px 16px 0px;
+}
+
+.standaloneTip{
+	position:relative;
+	margin:8px;
+	line-height:16px;
+	background-color:#eee;
+	border-radius:8px;
+	padding:8px 8px 8px 32px;
+	overflow:auto;
+	background-position:left top;
+	background-repeat:no-repeat;
+	background-image:url(../media/icon_info_gray.png);
+}
+
+.standaloneTip[highLight]{
+	box-shadow: inset rgba(255,0,0,1.00) 0px 0px 0px 1px;
+	background-image:url(../media/icon_info_red.png);
+}
+
+.standaloneTip:empty{
+	display:none;
+}
+
+.contentlist{
+	position:relative;
+	margin:8px;
+	background-color:#fff;
+	border-radius:8px;
+	padding:20px 20px 19px 20px;
+	box-shadow: inset #eee 0px 0px 0px 4px;
+}
+
+.contentlist > table {
+	position:relative;
+	width:100%;
+	margin-bottom:1px;
+	border-collapse:collapse;
+}
+
+.contentlist > table > thead > tr > td {
+	position:relative;
+	font-weight:bold;
+	color:#0079c7;
+	padding:8px 16px 9px 16px;
+	text-align:center;
+	line-height:16px;
+}
+
+.contentlist > table > thead > tr > td[textAlignLeft] {
+	text-align:left;
+}
+
+.contentlist > table > thead > tr > td[textAlignRight] {
+	text-align:right;
+}
+
+.contentlist > table > thead > tr > td::before {
+	content:"";
+	position:absolute;
+	left:0px;
+	right:0px;
+	bottom:0px;
+	border-bottom:3px double rgba(0,0,0,0.10);
+}
+
+.contentlist > table > thead > tr > td::after {
+	content:"";
+	position:absolute;
+	right:0px;
+	top:16px;
+	bottom:8px;
+	border-right:1px dotted rgba(0,0,0,0.15);
+}
+
+.contentlist > table > thead > tr > td:last-child::after {
+	content:normal;
+}
+
+.contentlist > table > tbody > tr > td{
+	position:relative;
+	padding:8px 16px;
+	text-align:center;
+	line-height:16px;
+}
+
+.contentlist > table > tbody > tr > td[textAlignLeft] {
+	text-align:left;
+}
+
+.contentlist > table > tbody > tr > td[textAlignRight] {
+	text-align:right;
+}
+
+.contentlist > table > tbody > tr > td::before {
+	content:"";
+	position:absolute;
+	left:0px;
+	right:0px;
+	bottom:0px;
+	border-bottom:1px solid rgba(0,0,0,0.05);
+}
+
+.contentlist > table > tbody > tr:last-child > td::before {
+	content:normal;
+}
+
+.contentlist > table > tbody > tr:hover > td {
+	background-color:#FFFCED;
+}
+
+.contentlist > table > tbody > tr > td > .state_yes{
+	position:relative;
+	display:block;
+	width:32px;
+	height:16px;
+	margin:0px auto;
+	background-position:top center;
+	background-repeat:no-repeat;
+	background-image:url(../media/icon_yes.png);
+}
+
+.contentlist > table > tbody > tr > td > .state_no{
+	position:relative;
+	display:block;
+	width:32px;
+	height:16px;
+	margin:0px auto;
+	background-position:top center;
+	background-repeat:no-repeat;
+	background-image:url(../media/icon_no.png);
+}
+
+.contentlist > table > tbody > tr > td > .checkbox_checked{
+	position:relative;
+	display:block;
+	cursor:pointer;
+	width:32px;
+	height:16px;
+	margin:0px auto;
+	background-position:top center;
+	background-repeat:no-repeat;
+	background-image:url(../media/icon_checkbox_checked.png);
+}
+
+.contentlist > table > tbody > tr > td > .checkbox_checked:hover{
+	background-position:bottom center;
+}
+
+.contentlist > table > tbody > tr > td > .checkbox_unchecked{
+	position:relative;
+	display:block;
+	cursor:pointer;
+	width:32px;
+	height:16px;
+	margin:0px auto;
+	background-position:top center;
+	background-repeat:no-repeat;
+	background-image:url(../media/icon_checkbox_unchecked.png);
+}
+
+.contentlist > table > tbody > tr > td > .checkbox_unchecked:hover{
+	background-position:bottom center;
+}
+
+.contentlist > table > tbody > tr > td > .detail{
+	position:relative;
+	display:block;
+	cursor:pointer;
+	width:32px;
+	height:16px;
+	margin:0px auto;
+	background-position:top center;
+	background-repeat:no-repeat;
+	background-image:url(../media/icon_list.png);
+}
+
+.contentlist > table > tbody > tr > td > .detail:hover{
+	background-position:bottom center;
+}
+
+.contentlist > table > tbody > tr > td > .link{
+	position:relative;
+	display:block;
+	cursor:pointer;
+	width:32px;
+	height:16px;
+	margin:0px auto;
+	background-position:top center;
+	background-repeat:no-repeat;
+	background-image:url(../media/icon_link.png);
+}
+
+.contentlist > table > tbody > tr > td > .link:hover{
+	background-position:bottom center;
+}
+
+.contentlist > table > tbody > tr > td > .edit{
+	position:relative;
+	display:block;
+	cursor:pointer;
+	width:32px;
+	height:16px;
+	margin:0px auto;
+	background-position:top center;
+	background-repeat:no-repeat;
+	background-image:url(../media/icon_edit.png);
+}
+
+.contentlist > table > tbody > tr > td > .edit:hover{
+	background-position:bottom center;
+}
+
+.contentlist > table > tbody > tr > td > .delete{
+	position:relative;
+	display:block;
+	cursor:pointer;
+	width:32px;
+	height:16px;
+	margin:0px auto;
+	background-position:top center;
+	background-repeat:no-repeat;
+	background-image:url(../media/icon_delete.png);
+}
+
+.contentlist > table > tbody > tr > td > .delete:hover{
+	background-position:bottom center;
+}
+
+.contentlist > table > tbody > tr > td > .view{
+	position:relative;
+	display:block;
+	cursor:pointer;
+	width:32px;
+	height:16px;
+	margin:0px auto;
+	background-position:top center;
+	background-repeat:no-repeat;
+	background-image:url(../media/icon_view.png);
+}
+
+.contentlist > table > tbody > tr > td > .view:hover{
+	background-position:bottom center;
+}
+
+.contentlist > table > tbody > tr > td > .textLink{
+	cursor:pointer;
+	color:#808080;
+}
+
+.contentlist > table > tbody > tr > td > .textLink:hover{
+	color:#06c;
+	text-decoration:underline;
+}
+
+.gridContentGroup{
+	position:relative;
+	margin:8px;
+	background-color:#eee;
+	border-radius:8px;
+	padding:4px 3px 3px 4px;
+}
+
+.gridContentGroup > table {
+	position:relative;
+	width:100%;
+	border-collapse:collapse;
+}
+
+.gridContentGroup > table > * > * > td{
+	position:relative;
+	padding:0px 1px 0px 0px;
+	vertical-align:top;
+}

@@ -1,0 +1,80 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>ViewBag.Title</title>
+</head>
+<body>
+    <div class='headContainer'>
+        <input type="button" value="测试" id="button"/>
+    </div>
+    <script>
+        var button = document.getElementById("button");
+        var urlAddress = "http://fojiao.ruiyuedigi.com/Article/GetArticleList"
+        button.onclick = function () {
+            var dataJson = {
+                category: 1,
+                pageIndex:0
+
+            }
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4) {
+                    if (xmlhttp.status == 200) {
+                        alert(decodeURIComponent(xmlhttp.response));
+                    } else {
+                        alert('连接服务器失败，请稍后再试！');
+                    }
+                }
+            }
+            xmlhttp.open("POST", urlAddress, true);
+            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xmlhttp.send(JSON.stringify(dataJson));
+        }        
+    </script>
+</body>
+</html>
+
+@*{"data":[{"Id":62,"CreateTime":"2016-03-30","Title":"慧律法师：佛教的特色","PicAD":"%2fUserFiles%2ffiles%2f%e5%9b%be%e7%89%87%2f20160330103544818.jpg","PicWidth":901,"PicHeight":378,"Level":"中级","Tags":"佛教"},{"Id":61,"CreateTime":"2016-03-30","Title":"慧律法师：佛法为救治今日社会所必需","PicAD":"%2fUserFiles%2ffiles%2f%e5%9b%be%e7%89%87%2f20160330102535327.jpg","PicWidth":502,"PicHeight":267,"Level":"中级","Tags":"佛教|释迦"},{"Id":60,"CreateTime":"2016-03-29","Title":"【慧律法雨】幸福与安详","PicAD":"%2fUserFiles%2ffiles%2f%e5%9b%be%e7%89%87%2f20160329093005702.jpg","PicWidth":423,"PicHeight":483,"Level":"中级","Tags":"安详|放下|认命|透彻"},{"Id":59,"CreateTime":"2016-03-29","Title":"【根除四烦恼】放大胸量，安详自在","PicAD":"%2fUserFiles%2ffiles%2f%e5%9b%be%e7%89%87%2f20160329091624178.jpg","PicWidth":745,"PicHeight":480,"Level":"中级","Tags":"气度|胸怀"},{"Id":58,"CreateTime":"2016-03-28","Title":"【根除四烦恼】交换立场，将心比心","PicAD":"%2fUserFiles%2ffiles%2f20160328172422131.jpg","PicWidth":499,"PicHeight":329,"Level":"中级","Tags":"将心比心"},{"Id":57,"CreateTime":"2016-03-28","Title":"【根除四烦恼】消弭我见，宽恕包容","PicAD":"%2fUserFiles%2ffiles%2f20160328163320739.jpg","PicWidth":711,"PicHeight":468,"Level":"中级","Tags":"智慧|宽容|"},{"Id":56,"CreateTime":"2016-03-28","Title":"【根除四烦恼】学佛之前，先学修养","PicAD":"%2fUserFiles%2ffiles%2f20160328161710585.jpg","PicWidth":511,"PicHeight":325,"Level":"中级","Tags":"学佛|解脱|慈悲"},{"Id":45,"CreateTime":"2016-03-25","Title":"【清心语录】有求皆苦，忘心即乐","PicAD":"%2fUserFiles%2ffiles%2f20160328170926285.jpg","PicWidth":439,"PicHeight":608,"Level":"中级","Tags":"清心|人生"},{"Id":44,"CreateTime":"2016-03-25","Title":"迈向生命的圆满","PicAD":"%2fUserFiles%2fimages%2fC5kr-fxhuyha2152761.jpg","PicWidth":300,"PicHeight":270,"Level":"高级","Tags":"圆满|人生"},{"Id":43,"CreateTime":"2016-03-25","Title":"“纠正自己”才是真修行","PicAD":"%2fUserFiles%2ffiles%2f20160328171050804.jpg","PicWidth":548,"PicHeight":351,"Level":"中级","Tags":"命运|反省|虚伪"}]}*@
+@*<!DOCTYPE html>
+<html>
+<head>
+    <title>测试</title>
+    <meta charset="utf-8">
+</head>
+<body>
+    <input type="button" onclick="setCookie('username','Darren')" value="写" />
+    <input type="button" onclick="getCookie('username')" value="读" />
+    <script type="text/javascript">
+    //写cookies
+    function setCookie(c_name, value, expiredays) {
+        var exdate = new Date();
+        exdate.setDate(exdate.getDate() + expiredays);
+        document.cookie = c_name + "=" + escape(value) + ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString());
+    }
+
+    //读取cookies
+    function getCookie(name) {
+        var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+        if (arr = document.cookie.match(reg))
+            return (arr[2]);
+        else
+            return null;
+    }
+
+    //删除cookies
+    function delCookie(name) {
+        var exp = new Date();
+        exp.setTime(exp.getTime() - 1);
+        var cval = getCookie(name);
+        if (cval != null)
+            document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString();
+    }
+
+    setCookie("isOnline", true, 30);
+    alert(getCookie("isOnline"));
+
+    </script>
+</body>
+
+</html>*@

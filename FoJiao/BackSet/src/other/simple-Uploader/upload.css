@@ -1,0 +1,319 @@
+[s-uploader-wrapper]{
+	position:absolute;
+	left:0px;
+	top:0px;
+	bottom:0px;
+	right:0px;
+	cursor:default;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-o-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+[s-uploader-wrapper] *{
+	color:inherit;
+	font-size:inherit;
+}
+
+[s-uploader-selectFile]{
+	position:absolute;
+	left:0px;
+	top:0px;
+	bottom:0px;
+	right:0px;
+}
+
+[s-uploader-selectFile-text]{
+	position:absolute;
+	left:0px;
+	top:0px;
+	width:100%;
+	line-height:1.1em;
+	text-align:center;
+	top:50%;
+	margin-top:-0.5em;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+}
+
+[s-uploader-progressBarWrapper]{
+	position:absolute;
+	left:0px;
+	top:0px;
+	bottom:0px;
+}
+
+[s-uploader-progressBarInnerWrapper]{
+	position:absolute;
+	left:1px;
+	top:1px;
+	bottom:1px;
+	right:1px;
+	overflow:hidden;
+}
+
+[s-uploader-progressBar]{
+	position:absolute;
+	top:0px;
+	width:100%;
+	height:100%;
+}
+
+[s-uploader-speedInfo]{
+	position:absolute;
+	left:0px;
+	top:0px;
+	width:100%;
+	line-height:1.1em;
+	text-align:center;
+	top:50%;
+	margin-top:-0.5em;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+}
+
+[s-uploader-success]{
+	position:absolute;
+	left:0px;
+	top:0px;
+	bottom:0px;
+}
+
+[s-uploader-successTip]{
+	position:absolute;
+	left:0px;
+	top:0px;
+	width:100%;
+	line-height:1.1em;
+	text-align:center;
+	top:50%;
+	margin-top:-0.5em;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+}
+
+[s-uploader-fail]{
+	position:absolute;
+	left:0px;
+	top:0px;
+	bottom:0px;
+}
+
+[s-uploader-failTip]{
+	position:absolute;
+	left:0px;
+	top:0px;
+	width:100%;
+	line-height:1.1em;
+	text-align:center;
+	top:50%;
+	margin-top:-0.5em;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+}
+
+[s-uploader-cancelUploadButton]{
+	position:absolute;
+	top:0px;
+	right:0px;
+	bottom:0px;
+}
+
+[s-uploader-cancelUploadButton]::after{
+	content:"";
+	position:absolute;
+	width:1em;
+	height:1em;
+	left:0.5em;
+	top:50%;
+	margin-top:-0.5em;
+	background-size:1em auto;
+	background-position:left top;
+}
+
+[s-uploader-cancelUploadButton]:hover::after{
+	background-position:left bottom;
+}
+
+[s-uploader-cancelSucceedButton]{
+	position:absolute;
+	top:0px;
+	right:0px;
+	bottom:0px;
+}
+
+[s-uploader-cancelSucceedButton]::after{
+	content:"";
+	position:absolute;
+	width:1em;
+	height:1em;
+	left:0.5em;
+	top:50%;
+	margin-top:-0.5em;
+	background-size:1em auto;
+	background-position:left top;
+}
+
+[s-uploader-cancelSucceedButton]:hover::after{
+	background-position:left bottom;
+}
+
+[s-uploader-returnButton]{
+	position:absolute;
+	top:0px;
+	right:0px;
+	bottom:0px;
+}
+
+[s-uploader-returnButton]::after{
+	content:"";
+	position:absolute;
+	width:1em;
+	height:1em;
+	left:0.5em;
+	top:50%;
+	margin-top:-0.5em;
+	background-size:1em auto;
+	background-position:left top;
+}
+
+[s-uploader-returnButton]:hover{
+	box-shadow:inset rgba(255,255,255,0.5) 0px 0px 0px 1px , inset rgba(0,125,0,0.4) 0px -32px 32px -32px ;
+	border:1px solid rgba(0,125,0,0.5);
+}
+
+[s-uploader-returnButton]:hover::after{
+	background-position:left bottom;
+}
+
+/*å¯è‡ªå®šä¹‰æ ·å¼*/
+[s-uploader-wrapper]{
+	font-size:12px;
+	color:#333;
+}
+
+[s-uploader-selectFile]{
+	border-radius:4px;
+	box-shadow:inset rgba(255,255,255,0.5) 0px 0px 0px 1px , inset rgba(0,0,0,0.4) 0px -32px 32px -32px ;
+	border:1px solid rgba(0,0,0,0.5);
+}
+
+[s-uploader-selectFile]:hover{
+	color:#080;
+	box-shadow:inset rgba(255,255,255,0.5) 0px 0px 0px 1px , inset rgba(0,125,0,0.4) 0px -32px 32px -32px ;
+	border:1px solid rgba(0,125,0,0.5);
+}
+
+[s-uploader-progressBarWrapper]{
+	right:28px;
+	border-radius:4px;
+	border:1px solid rgba(0,0,0,0.5);
+}
+
+[s-uploader-progressBarInnerWrapper]{
+	border-radius:3px;
+	box-shadow: inset rgba(0,0,0,0.2) 0px 32px 32px -32px ;
+}
+
+[s-uploader-progressBar]{
+	background-color:rgba(0,190,255,1);
+	background-image:url(loadinggif.gif);
+	background-repeat:repeat;
+	background-position:right center;
+	background-attachment:fixed;
+	border-radius:3px;
+	box-shadow: inset rgba(0,0,0,0.4) 2px 2px 16px 0px , rgba(0,0,0,0.2) 2px 0px 8px 0px ;
+}
+
+[s-uploader-success]{
+	right:28px;
+	border-radius:4px;
+	border:1px solid rgba(0,0,0,0.5);
+}
+
+[s-uploader-successTip-text]{
+	color:rgba(0,125,0,1);
+}
+
+[s-uploader-successTip-moreInfo]{
+	color:rgba(0,0,0,0.5);
+	cursor:pointer;
+}
+
+[s-uploader-successTip-moreInfo]:hover{
+	color:rgba(0,125,0,1);
+	font-weight:bold;
+}
+
+[s-uploader-fail]{
+	right:28px;
+	border-radius:4px;
+	border:1px solid rgba(0,0,0,0.5);
+}
+
+[s-uploader-failTip-text]{
+	color:rgba(255,0,0,1);
+}
+
+[s-uploader-failTip-moreInfo]{
+	color:rgba(0,0,0,0.5);
+	cursor:pointer;
+}
+
+[s-uploader-failTip-moreInfo]:hover{
+	color:rgba(255,0,0,1);
+	font-weight:bold;
+}
+
+[s-uploader-cancelUploadButton]{
+	width:24px;
+	font-size:12px;
+	border-radius:4px;
+	box-shadow:inset rgba(255,255,255,0.5) 0px 0px 0px 1px , inset rgba(0,0,0,0.4) 0px -32px 32px -32px ;
+	border:1px solid rgba(0,0,0,0.5);
+}
+
+[s-uploader-cancelUploadButton]::after{
+	background-image:url(icon_delete.png);
+}
+
+[s-uploader-cancelUploadButton]:hover{
+	box-shadow:inset rgba(255,255,255,0.5) 0px 0px 0px 1px , inset rgba(255,0,0,0.4) 0px -32px 32px -32px ;
+	border:1px solid rgba(255,0,0,0.5);
+}
+
+[s-uploader-cancelSucceedButton]{
+	width:24px;
+	font-size:12px;
+	border-radius:4px;
+	box-shadow:inset rgba(255,255,255,0.5) 0px 0px 0px 1px , inset rgba(0,0,0,0.4) 0px -32px 32px -32px ;
+	border:1px solid rgba(0,0,0,0.5);
+}
+
+[s-uploader-cancelSucceedButton]::after{
+	background-image:url(icon_delete.png);
+}
+
+[s-uploader-cancelSucceedButton]:hover{
+	box-shadow:inset rgba(255,255,255,0.5) 0px 0px 0px 1px , inset rgba(255,0,0,0.4) 0px -32px 32px -32px ;
+	border:1px solid rgba(255,0,0,0.5);
+}
+
+[s-uploader-returnButton]{
+	width:24px;
+	font-size:12px;
+	border-radius:4px;
+	box-shadow:inset rgba(255,255,255,0.5) 0px 0px 0px 1px , inset rgba(0,0,0,0.4) 0px -32px 32px -32px ;
+	border:1px solid rgba(0,0,0,0.5);
+}
+
+[s-uploader-returnButton]::after{
+	background-image:url(icon_return.png);
+}
+

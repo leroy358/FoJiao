@@ -1,0 +1,78 @@
+*{
+	color:inherit;
+	font-size:inherit;
+	font-family:inherit;
+	line-height:inherit;
+	letter-spacing:1px;
+}
+
+html{
+	position:relative;
+	height:100%
+}
+
+body{
+	position:relative;
+	margin:0px;
+	background-color:#e5e5e5;
+	font-size:12px;
+	font-family:微软雅黑;
+	color:#4d4d4d;
+	height:100%;
+}
+
+#loginArea{
+	position:absolute;
+	width:384px;
+	height:184px;
+	left:50%;
+	top:50%;
+	margin-left:-192px;
+	margin-top:-92px;
+	background-color:rgba(255,255,255,1.00);
+	border-radius:8px;
+	box-shadow:inset rgba(0,0,0,0.1) 0px -4px 0px 0px, rgba(0,0,0,0.4) 1px 1px 8px 0px , inset rgba(0,0,0,0.10) 0px -24px 16px -16px;
+	overflow:hidden;
+}
+
+#loginTitle{
+	position:absolute;
+	left:0px;
+	top:0px;
+	right:0px;
+	height:16px;
+	line-height:16px;
+	padding:16px 32px;
+	color:#fff;
+	font-size:14px;
+	font-weight:bold;
+	background-color:#0096ff;
+	box-shadow:inset rgba(0,0,0,0.2) 0px -4px 0px 0px, inset rgba(0,0,0,0.5) 0px -72px 48px -48px , rgba(0,0,0,0.6) 0px 0px 8px 0px;
+}
+
+#userName{
+	position:absolute;
+	display:block;
+	width:200px;
+	left:32px;
+	top:80px;
+	background-image:url(../media/icon_user.png);
+}
+
+#password{
+	position:absolute;
+	display:block;
+	width:200px;
+	left:32px;
+	top:120px;
+	background-image:url(../media/icon_lock.png);
+}
+
+#login{
+	position:absolute;
+	right:32px;
+	top:80px;
+	width:104px;
+	background-image:url(../media/icon_enterDoor_big.png);
+	height:72px;
+}

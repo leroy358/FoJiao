@@ -1,0 +1,26 @@
+﻿@model FoJiao.Models.Confusions
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="user-scalable=no,initial-scale=1">
+    <meta charset="utf-8">
+    <title>内容页</title>
+    <style>
+        body {
+            font-family: 黑体;
+            padding: 8px;
+            margin: 0px;
+        }
+
+        img, video {
+            display: block;
+            max-width: 100%;
+            height: auto !important;
+        }
+    </style>
+</head>
+
+<body>
+    @Html.Raw(Model.Answers)
+</body>
+</html>

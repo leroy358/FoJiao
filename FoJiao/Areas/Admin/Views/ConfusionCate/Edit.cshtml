@@ -1,0 +1,67 @@
+﻿@model FoJiao.Models.ConfusionCate
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_layout.cshtml";
+    ViewBag.Title = "音频编辑";
+}
+
+@section Head{
+    <link rel="stylesheet" type="text/css" href="/BackSet/src/other/simple-Uploader/simple-uploader.css">
+    <script src="~/BackSet/src/other/simple-Uploader/simple-uploader.js"></script>
+    <script src="/ckeditor/ckeditor.js" type="text/javascript"></script>
+    <script src="/ckfinder/ckfinder.js" type="text/javascript"></script>
+}
+
+<form action="/Admin/confusioncate/SaveEdit" id="form1" method="post">
+    <div class="pathTip">
+        <a class="pathTipItem" href="/admin/confusioncate/list">答疑类型列表</a>
+        @{
+            if (ViewBag.IsCreate)
+            {
+                <a class="pathTipItem" href="/Admin/confusioncate/List?searchStr=@Model.Title">@Model.Title</a>
+                <a class="pathTipItem">内容编辑</a>
+            }
+            else
+            {
+                <a class="pathTipItem">新增</a>
+            }
+        }
+    </div>
+
+    <div class="contentGroup">
+        <input type="hidden" name="Id" value="@(ViewBag.IsCreate?Model.Id.ToString():"")" />
+        <input type="hidden" name="IsCreate" value="@(ViewBag.IsCreate?"true":"false")" />
+        <input type="hidden" name="CreateTime" value="@(ViewBag.IsCreate?Model.CreateTime.ToString():"")" />
+        <div class="contentGroupTitle">
+            基本信息
+        </div>
+        <!---->
+        <div class="contentUnit">
+            <div class="title">类型名称</div>
+            <div class="content">
+                <input id="title" type="text" class="inputText" name="Title" value="@Model.Title"/>
+            </div>
+            <div class="tip"></div>
+        </div>
+    </div>
+
+    <div class="inputSet">
+        <a class="inputButton" onclick="doCheck();" leftIcon style="background-image:url(/BackSet/src/media/icon_disk.png)">提交</a>
+    </div>
+     <script>
+    //点提交调用此函数
+    function doCheck() {
+        var titleNa = checkInput("title");
+
+        if (titleNa) {
+            document.getElementById("form1").submit();
+        }
+        else alert("请确认信息完整后提交！");
+    }
+    //判断输入框值是否空
+    function checkInput(idd) {
+        if (document.getElementById(idd).value != "") return true;
+        else return false;
+    }
+    </script>
+</form>

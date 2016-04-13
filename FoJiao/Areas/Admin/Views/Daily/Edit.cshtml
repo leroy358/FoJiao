@@ -1,0 +1,66 @@
+﻿@model FoJiao.Models.DailyWords
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_layout.cshtml";
+    ViewBag.Title = "每日一句编辑";
+}
+
+@section Head{
+    <link rel="stylesheet" type="text/css" href="/BackSet/src/other/simple-Uploader/simple-uploader.css">
+    <script src="~/BackSet/src/other/simple-Uploader/simple-uploader.js"></script>
+    <script src="/ckeditor/ckeditor.js" type="text/javascript"></script>
+    <script src="/ckfinder/ckfinder.js" type="text/javascript"></script>
+}
+
+<form action="/Admin/daily/SaveEdit" id="form1" method="post">
+    <div class="pathTip">
+        <a class="pathTipItem" href="/admin/daily/list">每日一句列表</a>
+        @{
+            if (ViewBag.IsCreate)
+            {
+                <a class="pathTipItem" href="/Admin/daily/List?searchStr=@Model.Title">@Model.Title</a>
+                <a class="pathTipItem">内容编辑</a>
+            }
+            else
+            {
+                <a class="pathTipItem">新增</a>
+            }
+        }
+    </div>
+
+    <div class="contentGroup">
+        <input type="hidden" name="Id" value="@(ViewBag.IsCreate?Model.Id.ToString():"")" />
+        <input type="hidden" name="IsCreate" value="@(ViewBag.IsCreate?"true":"false")" />
+        <input type="hidden" name="CreateTime" value="@(ViewBag.IsCreate?Model.CreateTime.ToString():"")" />
+        <div class="contentGroupTitle">
+            基本信息
+        </div>
+        <!---->
+        <div class="contentUnit">
+            <div class="title">标题</div>
+            <div class="content">
+                <textarea id="title" name="Title" type="text" class="inputText">@Model.Title</textarea>
+            </div>
+            <div class="tip"></div>
+        </div>
+    </div>
+
+    <div class="inputSet">
+        <a class="inputButton" onclick="doCheck();" leftIcon style="background-image:url(/BackSet/src/media/icon_disk.png)">提交</a>
+    </div>
+    <script>
+    //点提交调用此函数
+    function doCheck() {
+        var titleNa = checkInput("title");
+        if (titleNa) {
+            document.getElementById("form1").submit();
+        }
+        else alert("请确认信息完整后提交！");
+    }
+    //判断输入框值是否空
+    function checkInput(idd) {
+        if (document.getElementById(idd).value != "") return true;
+        else return false;
+    }
+    </script>
+</form>

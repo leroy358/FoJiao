@@ -1,0 +1,178 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>内容页</title>
+
+    <link rel="stylesheet" type="text/css" href="~/Backset/src/other/uiTree/uiInput.css">
+    <link rel="stylesheet" type="text/css" href="/Backset/src/css/subPage.css">
+
+</head>
+
+<body>
+
+    <style>
+        #contentIframeOuterWrapper {
+            position: relative;
+            box-sizing: content-box;
+            padding: 16px 8px 32px 8px;
+            background-color: rgba(20,20,20,0.10);
+            border-radius: 8px;
+            width: 320px;
+            height: 480px;
+            box-shadow: rgba(0,0,0,.30) 2px 2px 8px 0px;
+        }
+
+        #contentIframeWrapper {
+            position: absolute;
+            top: 16px;
+            right: 8px;
+            bottom: 32px;
+            left: 8px;
+        }
+
+        #contentIframe {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            border: 0px none;
+        }
+
+        #paramWrapper {
+            position: absolute;
+            left: 8px;
+            top: 8px;
+            width: 680px;
+        }
+    </style>
+
+    <div class="gridContentGroup" style="padding: 0px; background-color: transparent;">
+        <table>
+            <tr>
+                <td width="1">
+                    <div id="contentIframeOuterWrapper">
+                        <div id="contentIframeWrapper">
+                            <iframe src="/admin/video/preview/@ViewBag.videoId" id="contentIframe"></iframe>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="contentGroup">
+                        <div class="contentGroupTitle">
+                            预览设置
+                        </div>
+                        <!---->
+                        <div class="contentUnit">
+                            <div class="title">分辨率模式</div>
+                            <div class="content">
+                                <div class="inputListSelect" listAtRight>
+                                    <div class="inputListSelectListWrapper">
+                                        <label class="inputListSelectItem">
+                                            <input class="inputListSelectItemInput" type="radio" name="pxValueSet" value="320*480" onchange="refreshData()" />
+                                            <div class="inputListSelectItemContent">iPhone 4/4s （320*480 2X）</div>
+                                        </label>
+                                        <label class="inputListSelectItem">
+                                            <input class="inputListSelectItemInput" type="radio" name="pxValueSet" value="320*568" onchange="refreshData()" checked />
+                                            <div class="inputListSelectItemContent">iPhone 5/5s/5c （320*568 2X）</div>
+                                        </label>
+                                        <label class="inputListSelectItem">
+                                            <input class="inputListSelectItemInput" type="radio" name="pxValueSet" value="375*667" onchange="refreshData()" />
+                                            <div class="inputListSelectItemContent">iPhone 6 （375*667 2X）</div>
+                                        </label>
+                                        <label class="inputListSelectItem">
+                                            <input class="inputListSelectItemInput" type="radio" name="pxValueSet" value="414*736" onchange="refreshData()" />
+                                            <div class="inputListSelectItemContent">iPhone 6 plus（414*736 3X）</div>
+                                        </label>
+                                        <label class="inputListSelectItem">
+                                            <input class="inputListSelectItemInput" type="radio" name="pxValueSet" value="360*640" onchange="refreshData()" />
+                                            <div class="inputListSelectItemContent">小米2-4（360*640 nX）</div>
+                                        </label>
+                                        <label class="inputListSelectItem">
+                                            <input class="inputListSelectItemInput" type="radio" name="pxValueSet" value="custom" onchange="refreshData()" />
+                                            <div class="inputListSelectItemContent">自定义</div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tip">以该分辨率大小进行预览</div>
+                        </div>
+                        <!---->
+                        <div class="contentUnit" id="setPxInputWrapper" style="display:none">
+                            <div class="title">自定义分辨率</div>
+                            <div class="content">
+                                <input type="text" class="inputText" id="setPxInput">
+                            </div>
+                            <div class="tip">以 w*h 的方式输入分辨率，如：320*480</div>
+                        </div>
+                        <div class="contentUnit" id="setPxUseButtonWrapper" style="display:none">
+                            <div class="title"></div>
+                            <div class="content">
+                                <a class="inputButton" onclick="useCustomPx();">应用自定义分辨率</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="standaloneTip">如果出现应用新分辨率后预览布局不会自动刷新的情况，可强制刷新预览界面。</div>
+
+                    <div class="contentGroup">
+                        <div class="contentUnit">
+                            <div class="title"></div>
+                            <div class="content">
+                                <a class="inputButton" onclick="refreshContent();">强制刷新预览界面</a>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+
+    <script>
+		refreshData();
+		function refreshData(){
+			var value=document.querySelector("input.inputListSelectItemInput[name='pxValueSet']:checked").value;
+			if(value=="custom"){
+				document.getElementById("setPxInputWrapper").style.display="block";
+				document.getElementById("setPxUseButtonWrapper").style.display="block";
+			}else{
+				document.getElementById("setPxInputWrapper").style.display="none";
+				document.getElementById("setPxUseButtonWrapper").style.display="none";
+				var w= parseFloat(value.split("*")[0]) ;
+				var h= parseFloat(value.split("*")[1]) ;
+				if(isNaN(w))w=0;
+				if(isNaN(h))h=0;
+				applyPx(w,h);
+			}
+		}
+		function useCustomPx(){
+			var value=document.getElementById("setPxInput").value;
+			if(value.replace(/(^\s*)|(\s*$)/g,"")=="")return
+			try{
+				var w= parseFloat(value.split("*")[0]) ;
+				var h= parseFloat(value.split("*")[1]) ;
+				if(isNaN(w))w=0;
+				if(isNaN(h))h=0;
+				applyPx(w,h);
+			}catch(e){
+				alert("输入分辨率格式无效");
+			}
+		}
+		function applyPx(w,h){
+			document.getElementById("contentIframeOuterWrapper").style.width=w+"px";
+			document.getElementById("contentIframeOuterWrapper").style.height=h+"px";
+		}
+		function refreshContent(){
+			document.getElementById("contentIframe").contentWindow.location.reload(true);
+		}
+
+		document.getElementById("setPxInput").addEventListener("keydown",function(e){
+				if(e.keyCode==13)useCustomPx();
+			});
+    </script>
+
+</body>
+</html>

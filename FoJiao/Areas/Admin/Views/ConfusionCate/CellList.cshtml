@@ -1,0 +1,63 @@
+﻿@model IEnumerable<FoJiao.Models.ConfusionSecCate>
+
+@{
+    ViewBag.Title = "答疑类型列表";
+    Layout = "~/Areas/Admin/Views/Shared/_layout.cshtml";
+}
+
+<div class="pathTip">
+    <a class="pathTipItem" href="/admin/confusioncate/list">答疑类型列表</a>
+    <a class="pathTipItem" href="/Admin/confusioncate/List?searchStr=@ViewBag.CollectionName">@ViewBag.CollectionName</a>
+    @{
+        if (ViewBag.searchStr != null)
+        {
+            <a class="pathTipItem" href='/Admin/confusioncate/cellList?collectionId=@Request.QueryString["collectionId"]'>子类型列表</a>
+            <a class="pathTipItem">@ViewBag.searchStr</a>
+
+        }
+        else
+        {
+            <a class="pathTipItem">子类型列表</a>
+        }
+    }
+
+</div>
+
+<div class="inputSet">
+    <a class="inputButton" href=@Url.Action("CellCreate", new { collectionId=Request.QueryString["collectionId"]}) leftIcon style="background-image:url(/BackSet/src/media/icon_plus.png)">添加</a>
+</div>
+
+<div class="contentlist">
+    <table>
+        <thead>
+            <tr>
+                <td width="80">ID</td>
+                <td width="120">创建时间</td>
+                <td width="120">更新时间</td>
+                <td>类别名称</td>
+                <td width="60">类型名称</td>
+                <td width="60">该类答疑</td>
+                <td width="60">删除</td>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                if (Model != null)
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td> @item.CreateTime</td>
+                            <td> @item.UpdateTime</td>
+                            <td> @item.Title</td>                           
+                            <td><a class="edit" href="/Admin/confusioncate/CellEdit/@item.Id"></a></td>
+                            <td><a class="detail" href="/Admin/confusioncate/ConfusionList?cateId=@item.Id"></a></td>
+                            <td><a class="delete" href="@Url.Action("CellDelete", new { id=item.Id,returnURL=Request.Url.ToString()})"></a></td>
+                        </tr>
+                    }
+                }
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,70 @@
+﻿@model IEnumerable<FoJiao.Models.ConfusionGuest>
+
+@{
+    ViewBag.Title = "文章列表";
+    Layout = "~/Areas/Admin/Views/Shared/_layout.cshtml";
+}
+
+<div class="pathTip">
+
+    @{
+        if (Request.QueryString["state"] == "0")
+        {
+            <a class="pathTipItem">尚未处理的问题列表</a>
+        }
+        else if (Request.QueryString["state"] == "1")
+        {
+            <a class="pathTipItem">已回答问题列表</a>
+        }
+        else
+        {
+            <a class="pathTipItem">标为删除的问题列表</a>
+        }
+    }
+</div>
+
+<div class="contentlist">
+    <table>
+        <thead>
+            <tr>
+                <td width="80">ID</td>
+                <td width="120">创建时间</td>
+                <td width="120">更新时间</td>
+                <td>问题</td>
+                <td width="60">已回答</td>
+                <td width="60">作答</td>
+                <td width="60">标记为删除</td>
+            </tr>
+        </thead>
+        <tbody>
+            
+                @foreach (var item in Model)
+                {
+                   <tr>
+                        <td>@item.Id</td>
+                        <td>@item.CreateTime</td>
+                        <td>@item.UpdateTime</td>
+                        <td textAlignLeft>@item.Title</td>
+                        <td><a @(item.StateId==1?"class=state_yes":"class=state_no")></a></td>
+                        <td><a class="edit" href="/admin/confusion/edit/@item.Id"></a></td>
+                        <td><a @(item.IsDeleted? "class=checkbox_checked" : "class=checkbox_unchecked") href='@Url.Action(item.IsDeleted ? "UnDelete":"Delete",new {id=item.Id,returnURL=Request.Url.ToString() })' ></a></td>
+                    </tr>
+                }
+        </tbody>
+    </table>
+</div>
+<form id="form_pageindex" action="/Admin/Confusion/List" method="get">
+    <div class="inputSet">
+        <input type="hidden" name="state" value="@Request.QueryString["state"]" class="inputText">
+        <input type="hidden" name="delete" value="@Request.QueryString["delete"]" class="inputText">
+        <a href="@ViewBag.firstPage" class="inputButton">首页</a>
+        <a href="@ViewBag.perPage" class="inputButton"> &lt; 上一页</a>
+        <div class="splitter"></div>
+        <input type="text" class="inputText" name="pageIndex" style="width:40px;" value="@ViewBag.pageX" />
+        <span style="position:relative; float:left; line-height:16px; padding:8px; margin-right:8px;">/@ViewBag.pageCount</span>
+        <a onclick="document.getElementById('form_pageindex').submit()" class="inputButton">转至</a>
+        <div class="splitter"></div>
+        <a href="@ViewBag.nextPage" class="inputButton">下一页 &gt;</a>
+        <a href="@ViewBag.lastPage" class="inputButton">末页</a>
+    </div>
+</form>

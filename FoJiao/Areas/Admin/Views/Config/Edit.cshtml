@@ -1,0 +1,46 @@
+﻿@model FoJiao.Models.Admins
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_layout.cshtml";
+    ViewBag.Title = "管理员信息编辑";
+}
+
+<form action="/Admin/Config/SavEdit" id="form1" method="post">
+    <div class="pathTip">
+        <a class="pathTipItem">后台密码修改</a>
+    </div>
+    <div class="contentGroup">
+        <input type="hidden" name="Id" value="@Model.Id" />
+        <div class="contentGroupTitle">
+            密码修改
+        </div>
+        <div class="contentUnit">
+            <div class="title">管理员用户名</div>
+            <div class="content">
+                <input type="text" name="UserName" class="inputText" value='@Model.AdminName' readonly />
+            </div>
+            <div class="tip">用户名无法编辑更改</div>
+        </div>
+        <div class="contentUnit">
+            <div class="title">原密码</div>
+            <div class="content">
+                <input type="password" name="Password" class="inputText" value='' />
+            </div>
+        </div>
+        <div class="contentUnit">
+            <div class="title">新密码</div>
+            <div class="content">
+                <input type="password" name="newPassword" class="inputText" value='' />
+            </div>
+        </div>
+        <div class="contentUnit">
+            <div class="title">重复新密码</div>
+            <div class="content">
+                <input type="password" name="confirmPassword" class="inputText" value='' />
+            </div>
+        </div>
+    </div>
+    <div class="inputSet">
+        <a class="inputButton" onclick="document.getElementById('form1').submit();" lefticon style="background-image:url(/BackSet/src/media/icon_disk.png)">提交</a>
+    </div>
+</form>

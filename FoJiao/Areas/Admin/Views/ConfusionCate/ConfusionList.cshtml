@@ -1,0 +1,85 @@
+﻿@model IEnumerable<FoJiao.Models.Confusions>
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_layout.cshtml";
+    ViewBag.Title = "答疑列表";
+}
+
+<div class="pathTip">
+    <a class="pathTipItem" href="/Admin/ConfusionCate/List">答疑类型列表</a>
+    <a class="pathTipItem" href="/Admin/ConfusionCate/List?searchStr=@ViewBag.BuildName">@ViewBag.BuildName</a>
+    <a class="pathTipItem" href="/Admin/ConfusionCate/CellList?collectionId=@ViewBag.BuildId">子类型列表</a>
+    <a class="pathTipItem" href="/Admin/ConfusionCate/CellList?collectionId=@ViewBag.BuildId&searchStr=@ViewBag.LayName">@ViewBag.LayName</a>
+    @{
+        if (ViewBag.SearchStr != null)
+        {
+            <a class="pathTipItem" href='/admin/confusioncate/confusionlist?cateId=@Request.QueryString["cateId"]'>答疑列表</a>
+            <a class="pathTipItem">@ViewBag.SearchStr</a>
+        }
+        else
+        {
+            <a class="pathTipItem">答疑列表</a>
+        }
+    }
+</div>
+
+<div class="inputSet">
+    @{
+        int layId = ViewBag.LayId;
+        <a class="inputButton" href="/Admin/ConfusionCate/CreateConfusion/@layId" leftIcon style="background-image:url(/BackSet/src/media/icon_plus.png)">添加</a>
+    }
+    <div class="splitter"></div>
+    <form action="/Admin/ConfusionCate/ConfusionList" id="form1">
+        <input type="hidden" name="cateId" value='@Request.QueryString["cateId"]' />
+        <input type="text" class="inputText" name="searchStr" placeHolder="id、标题" />
+        <a class="inputButton"  onclick="document.getElementById('form1').submit();"  leftIcon style="background-image:url(/BackSet/src/media/icon_search.png)">搜索</a>
+
+    </form>
+</div>
+<div class="contentlist">
+    <table>
+        <thead>
+            <tr>
+                <td width="80">ID</td>
+                <td width="120">创建时间</td>
+                <td width="120">更新时间</td>
+                <td>问题</td>
+                <td width="60">内容编辑</td>
+                <td width="60">删除</td>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                if (Model != null)
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.CreateTime</td>
+                            <td>@item.UpdateTime</td>
+                            <td>@item.Title</td>
+                            <td><a class="edit" href="/Admin/ConfusionCate/EditConfusion/@item.Id"></a></td>
+                            <td><a class="delete" href="@Url.Action("DeleteConfusion", new { id=item.Id,returnURL=Request.Url.ToString()})"></a></td>
+                        </tr>
+                    }
+                }
+            }
+        </tbody>
+    </table>
+</div>
+<form id="form_pageindex" action="/Admin/confusioncate/confusionList" method="get">
+    <div class="inputSet">
+        <input type="hidden" name="cateId" value="@Request.QueryString["cateId"]" class="inputText">
+        <input type="hidden" name="searchStr" value="@ViewBag.searchStr" class="inputText">
+        <a href="@ViewBag.firstPage" class="inputButton">首页</a>
+        <a href="@ViewBag.perPage" class="inputButton"> &lt; 上一页</a>
+        <div class="splitter"></div>
+        <input type="text" class="inputText" name="pageIndex" style="width:40px;" value="@ViewBag.pageX" />
+        <span style="position:relative; float:left; line-height:16px; padding:8px; margin-right:8px;">/@ViewBag.pageCount</span>
+        <a onclick="document.getElementById('form_pageindex').submit()" class="inputButton">转至</a>
+        <div class="splitter"></div>
+        <a href="@ViewBag.nextPage" class="inputButton">下一页 &gt;</a>
+        <a href="@ViewBag.lastPage" class="inputButton">末页</a>
+    </div>
+</form>

@@ -1,0 +1,24 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Shared/_layout.cshtml";
+    ViewBag.Title = "管理系统";
+}
+
+@section Head{
+    <script src="~/Scripts//jquery-1.10.2.min.js"></script>
+    <script src="~/BackSet/src/js/smp.tips.js"></script>
+    <script src="~/BackSet/src/other/simple.validator/simple-validator.js"></script>
+    <script src="~/BackSet/src/js/login.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/BackSet/src/css/frame_login.css">
+}
+
+<noscript>
+    页面需要支持JS才可以正常运行
+</noscript>
+<div id="loginArea">
+    <form id="form1" action="/Admin/Console/Login" method="post">
+        <div id="loginTitle">管理系统登录</div>
+        <input type="text" id="userName" name="username" class="inputText" onkeydown="if (event.keyCode == 13) { doSubmit() }" s-validator-rules="required" s-validator-onsucceed="this.removeAttribute('error');" s-validator-onfail="this.setAttribute('error','');" lefticon />
+        <input type="password" id="password" name="password" onkeydown="if (event.keyCode == 13) { doSubmit() }" s-validator-rules="required" s-validator-onsucceed="this.removeAttribute('error');" s-validator-onfail="this.setAttribute('error','');" class="inputText" lefticon />
+        <a id="login" class="inputButton" onclick="doSubmit()" centericon></a>
+    </form>
+</div>
