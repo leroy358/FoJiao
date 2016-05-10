@@ -146,15 +146,22 @@ namespace FoJiao.Controllers
             {
                 AudioDetail audioDetail = new AudioDetail();
                 audioDetail.Id = audio.Id;
+                int originalWidth = 0;
+                int originalHeight = 0;
                 if (audio.AudioIndex != null)
                 {
                     audioDetail.PicAD = audio.AudioIndex;
-
+                    System.Drawing.Image imgOriginal = System.Drawing.Image.FromFile(Server.MapPath(HttpUtility.UrlDecode(audio.AudioIndex)));
+                    originalWidth = imgOriginal.Width;
+                    originalHeight = imgOriginal.Height;
                 }
                 else
                 {
                     audioDetail.PicAD = "";
                 }
+                audioDetail.PicWidth = originalWidth;
+                audioDetail.PicHeight = originalHeight;
+
                 audioDetail.Title = audio.Title;
                 if (audio.AudioLink != null)
                 {
@@ -195,6 +202,21 @@ namespace FoJiao.Controllers
             audioDetailDetail.Id = audio.Id;
             audioDetailDetail.Title = audio.Title;
             audioDetailDetail.PicAD = audio.AudioIndex;
+            int originalWidth = 0;
+            int originalHeight = 0;
+            if (audio.AudioIndex != null)
+            {
+                audioDetailDetail.PicAD = audio.AudioIndex;
+                System.Drawing.Image imgOriginal = System.Drawing.Image.FromFile(Server.MapPath(HttpUtility.UrlDecode(audio.AudioIndex)));
+                originalWidth = imgOriginal.Width;
+                originalHeight = imgOriginal.Height;
+            }
+            else
+            {
+                audioDetailDetail.PicAD = "";
+            }
+            audioDetailDetail.PicWidth = originalWidth;
+            audioDetailDetail.PicHeight = originalHeight;
             audioDetailDetail.AudioLink =  audio.AudioLink;
             audioDetailDetail.Content = "/admin/audio/previewaudio/" + audioId;
 

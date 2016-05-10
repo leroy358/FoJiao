@@ -134,15 +134,22 @@ namespace FoJiao.Controllers
             {
                 VideoDetail videoDetail = new VideoDetail();
                 videoDetail.Id = video.Id;
+                int originalWidth = 0;
+                int originalHeight = 0;
+
                 if (video.VideoIndex != null)
                 {
                     videoDetail.PicAD = video.VideoIndex;
-
+                    System.Drawing.Image imgOriginal = System.Drawing.Image.FromFile(Server.MapPath(HttpUtility.UrlDecode(videoCollection.PicIndex)));
+                    originalWidth = imgOriginal.Width;
+                    originalHeight = imgOriginal.Height;
                 }
                 else
                 {
                     videoDetail.PicAD = "";
                 }
+                videoDetail.PicWidth = originalWidth;
+                videoDetail.PicHeight = originalHeight;
                 videoDetail.Title = video.Title;
                 if (video.VideoLink != null)
                 {
